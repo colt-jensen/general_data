@@ -1,5 +1,31 @@
 # general_code
 
+library(readxl)
+read_excel("Miss-Data.xls")
+head(Miss_Data)
+library(forcats)
+library(dplyr)
+count(Miss_Data, Miss_Data$City)
+City_2 <- fct_collapse(Miss_Data$City, Biloxi = c("Biloxi", "Bilxoi"), Pascagoula = c("Pascagola", "Pascagoula"))
+fct_count(City_2)
+Miss_Data$City <- City_2
+Miss_Data %>%
+ count(City)
+ 
+lm(PSM ~ PSNPS + Age, data=Miss_Data) %>% 
+ summary() 
+
+# Comments start with a pound sign/hashtag
+
+Miss_Data$PSM <- as.factor(Miss_Data$PSM)
+
+ggplot(data = Miss_Data) +
+ geom_point(aes(x = PSM, y = Age))
+ 
+
+
+
+
 str(X6_17_Colt_Capstone_Miss_data_set)
 count(X6_17_Colt_Capstone_Miss_data_set$City)
 install.packages("plot_ly")
